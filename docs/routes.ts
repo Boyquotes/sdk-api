@@ -132,7 +132,7 @@ const models: TsoaRoute.Models = {
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "Pick_OriginalCreateWithdrawalParams.Exclude_keyofOriginalCreateWithdrawalParams.fromExchange-or-toExchange-or-readonlyExchange-or-amount__": {
         "dataType": "refAlias",
-        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"tokenSymbol":{"dataType":"string","required":true},"address":{"dataType":"string"},"network":{"dataType":"string","required":true},"totpCode":{"dataType":"string"},"withdrawalTag":{"dataType":"string"},"clientTxId":{"dataType":"string"},"isInternalTransfer":{"dataType":"boolean"}},"validators":{}},
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"tokenSymbol":{"dataType":"string","required":true},"address":{"dataType":"string"},"network":{"dataType":"string","required":true},"totpCode":{"dataType":"string"},"withdrawalTag":{"dataType":"string"},"clientTxId":{"dataType":"string"},"isInternalTransfer":{"dataType":"boolean"},"appendFeeToAmount":{"dataType":"boolean"}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "Omit_OriginalCreateWithdrawalParams.fromExchange-or-toExchange-or-readonlyExchange-or-amount_": {
@@ -157,7 +157,7 @@ const models: TsoaRoute.Models = {
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "Pick_OriginalPrepareWithdrawalParams.Exclude_keyofOriginalPrepareWithdrawalParams.fromExchange-or-toExchange-or-readonlyExchange-or-amount__": {
         "dataType": "refAlias",
-        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"tokenSymbol":{"dataType":"string","required":true},"address":{"dataType":"string"},"network":{"dataType":"string","required":true},"isInternalTransfer":{"dataType":"boolean"}},"validators":{}},
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"tokenSymbol":{"dataType":"string","required":true},"address":{"dataType":"string"},"network":{"dataType":"string","required":true},"isInternalTransfer":{"dataType":"boolean"},"appendFeeToAmount":{"dataType":"boolean"}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "Omit_OriginalPrepareWithdrawalParams.fromExchange-or-toExchange-or-readonlyExchange-or-amount_": {
@@ -202,26 +202,6 @@ const models: TsoaRoute.Models = {
             "network": {"dataType":"string","required":true},
             "amount": {"dataType":"double","required":true},
             "key": {"dataType":"string"},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "ReturnType_CedeSDK-at-api_91_checkAddressIsWhitelisted_93__": {
-        "dataType": "refAlias",
-        "type": {"dataType":"boolean","validators":{}},
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "CheckAddressIsWhitelistedResponse": {
-        "dataType": "refAlias",
-        "type": {"ref":"ReturnType_CedeSDK-at-api_91_checkAddressIsWhitelisted_93__","validators":{}},
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "CheckAddressIsWhitelistedParams": {
-        "dataType": "refObject",
-        "properties": {
-            "address": {"dataType":"string","required":true},
-            "tokenSymbol": {"dataType":"string","required":true},
-            "key": {"dataType":"string","required":true},
         },
         "additionalProperties": false,
     },
@@ -386,7 +366,7 @@ const models: TsoaRoute.Models = {
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "CreateOrderRequest": {
         "dataType": "refAlias",
-        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"metadata":{"dataType":"nestedObjectLiteral","nestedProperties":{"defiAddress":{"dataType":"string"},"tradeAndSend":{"dataType":"boolean"}}},"recaptchaToken":{"dataType":"string"},"amount":{"dataType":"string","required":true},"price":{"dataType":"string","required":true},"orderType":{"ref":"OrderType","required":true},"orderSide":{"ref":"OrderSide","required":true},"pairSymbol":{"ref":"PairSymbol","required":true}},"validators":{}},
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"metadata":{"dataType":"nestedObjectLiteral","nestedProperties":{"defiAddress":{"dataType":"string"},"tradeAndSend":{"dataType":"boolean"}}},"amount":{"dataType":"string","required":true},"price":{"dataType":"string","required":true},"orderType":{"ref":"OrderType","required":true},"orderSide":{"ref":"OrderSide","required":true},"pairSymbol":{"ref":"PairSymbol","required":true}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "PreparedOrder": {
@@ -431,7 +411,7 @@ const models: TsoaRoute.Models = {
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "Order": {
         "dataType": "refAlias",
-        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"clientOrderId":{"dataType":"string"},"fee":{"ref":"Fee_2","required":true},"filled":{"dataType":"double","required":true},"amount":{"dataType":"double","required":true},"price":{"dataType":"double","required":true},"side":{"ref":"OrderSide","required":true},"type":{"ref":"OrderType","required":true},"pairSymbol":{"ref":"PairSymbol","required":true},"status":{"ref":"OrderStatus","required":true},"timestamp":{"dataType":"double","required":true},"id":{"ref":"OrderId","required":true}},"validators":{}},
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"isSelfTrade":{"dataType":"boolean"},"clientOrderId":{"dataType":"string"},"fee":{"ref":"Fee_2","required":true},"filled":{"dataType":"double","required":true},"amount":{"dataType":"double","required":true},"price":{"dataType":"double","required":true},"side":{"ref":"OrderSide","required":true},"type":{"ref":"OrderType","required":true},"pairSymbol":{"ref":"PairSymbol","required":true},"status":{"ref":"OrderStatus","required":true},"timestamp":{"dataType":"double","required":true},"id":{"ref":"OrderId","required":true}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "ReturnType_CedeSDK-at-api_91_createOrder_93__": {
@@ -442,6 +422,11 @@ const models: TsoaRoute.Models = {
     "CreateOrderResponse": {
         "dataType": "refAlias",
         "type": {"ref":"ReturnType_CedeSDK-at-api_91_createOrder_93__","validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "CustomThrottlePriority": {
+        "dataType": "refEnum",
+        "enums": [1,2,3],
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "OrderStpTypes": {
@@ -456,7 +441,7 @@ const models: TsoaRoute.Models = {
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "Pick_CreateOrderParamsType.Exclude_keyofCreateOrderParamsType.fromExchange-or-toExchange-or-readonlyExchange-or-exchange__": {
         "dataType": "refAlias",
-        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"amount":{"dataType":"string","required":true},"pairSymbol":{"dataType":"string","required":true},"orderSide":{"ref":"OrderSide","required":true},"price":{"dataType":"string","required":true},"orderType":{"ref":"OrderType","required":true},"recaptchaToken":{"dataType":"string"},"metadata":{"dataType":"nestedObjectLiteral","nestedProperties":{"defiAddress":{"dataType":"string"},"tradeAndSend":{"dataType":"boolean"}}},"clientOrderId":{"dataType":"string"},"stp":{"ref":"OrderStpTypes"},"extraHeaders":{"ref":"Record_string.string_"}},"validators":{}},
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"amount":{"dataType":"string","required":true},"opts":{"dataType":"nestedObjectLiteral","nestedProperties":{"requestPriority":{"ref":"CustomThrottlePriority"}}},"pairSymbol":{"dataType":"string","required":true},"orderSide":{"ref":"OrderSide","required":true},"price":{"dataType":"string","required":true},"orderType":{"ref":"OrderType","required":true},"metadata":{"dataType":"nestedObjectLiteral","nestedProperties":{"defiAddress":{"dataType":"string"},"tradeAndSend":{"dataType":"boolean"}}},"clientOrderId":{"dataType":"string"},"stp":{"ref":"OrderStpTypes"},"extraHeaders":{"ref":"Record_string.string_"}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "Omit_CreateOrderParamsType.fromExchange-or-toExchange-or-readonlyExchange-or-exchange_": {
@@ -579,6 +564,21 @@ const models: TsoaRoute.Models = {
         "type": {"ref":"ReturnType_CedeSDK-at-api_91_getSubAccountBalancesV2_93__","validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "Record_string.Partial___91_walletType-string_93__58___91_tokenSymbol-string_93__58__balance-PortfolioBalanceEntry--token-TokenWithMarketNetwork_____": {
+        "dataType": "refAlias",
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{},"validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "ReturnType_CedeSDK-at-api_91_getSubAccountsBalancesWithTokensV2_93__": {
+        "dataType": "refAlias",
+        "type": {"ref":"Record_string.Partial___91_walletType-string_93__58___91_tokenSymbol-string_93__58__balance-PortfolioBalanceEntry--token-TokenWithMarketNetwork_____","validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "GetSubAccountsBalancesWithTokensResponseV2": {
+        "dataType": "refAlias",
+        "type": {"ref":"ReturnType_CedeSDK-at-api_91_getSubAccountsBalancesWithTokensV2_93__","validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "SubAccountTransferResponse": {
         "dataType": "refAlias",
         "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"transferId":{"dataType":"string","required":true}},"validators":{}},
@@ -647,6 +647,21 @@ const models: TsoaRoute.Models = {
     "GetWithdrawableBalancesResponseV2": {
         "dataType": "refAlias",
         "type": {"ref":"ReturnType_CedeSDK-at-api_91_getWithdrawableBalancesV2_93__","validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "WithdrawableBalancesWithTokensV2": {
+        "dataType": "refAlias",
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{},"additionalProperties":{"dataType":"nestedObjectLiteral","nestedProperties":{"token":{"ref":"TokenWithMarketNetwork","required":true},"balance":{"ref":"TokenBalanceV2","required":true}}},"validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "ReturnType_CedeSDK-at-api_91_getWithdrawableBalancesWithTokensV2_93__": {
+        "dataType": "refAlias",
+        "type": {"ref":"WithdrawableBalancesWithTokensV2","validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "GetWithdrawableBalancesWithTokensResponseV2": {
+        "dataType": "refAlias",
+        "type": {"ref":"ReturnType_CedeSDK-at-api_91_getWithdrawableBalancesWithTokensV2_93__","validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "ReturnType_CedeSDK-at-api_91_getBalancesV2_93__": {
@@ -902,7 +917,7 @@ const models: TsoaRoute.Models = {
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "ExchangeInfo": {
         "dataType": "refAlias",
-        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"supportVerifyKYC":{"dataType":"boolean","required":true},"websiteHomelinkIdentifier":{"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"enum","enums":[null]}],"required":true},"notConnectedIdentifier":{"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"undefined"}],"required":true},"transferWalletTypes":{"dataType":"union","subSchemas":[{"dataType":"array","array":{"dataType":"refEnum","ref":"WalletType"}},{"dataType":"undefined"}],"required":true},"sendWalletType":{"dataType":"union","subSchemas":[{"ref":"WalletType"},{"dataType":"undefined"}],"required":true},"inducedPermissions":{"dataType":"union","subSchemas":[{"ref":"Partial_Record_ApiPermissions.ApiPermissions-Array__"},{"dataType":"undefined"}],"required":true},"requiresTwoKeys":{"dataType":"boolean","required":true},"requiresPassword":{"dataType":"boolean","required":true},"requiresUid":{"dataType":"boolean","required":true},"oauthAuthentication":{"dataType":"nestedObjectLiteral","nestedProperties":{"isUsingFastApi":{"dataType":"boolean","required":true},"hasPkceFlow":{"dataType":"boolean","required":true},"isOauthLoginSupported":{"dataType":"boolean","required":true}},"required":true},"hybridAuthentication":{"dataType":"union","subSchemas":[{"dataType":"nestedObjectLiteral","nestedProperties":{"api_keys":{"dataType":"array","array":{"dataType":"refEnum","ref":"ApiPermissions"},"required":true},"oauth":{"dataType":"array","array":{"dataType":"refEnum","ref":"ApiPermissions"},"required":true}}},{"dataType":"undefined"}],"required":true},"affiliationLink":{"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"undefined"}],"required":true},"addressManagementUrl":{"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"undefined"}],"required":true},"apiManagementLink":{"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"undefined"}],"required":true},"featuresUnderMaintenance":{"dataType":"nestedObjectLiteral","nestedProperties":{"limit_trade":{"dataType":"boolean","required":true},"trade_and_send":{"dataType":"boolean","required":true},"receive":{"dataType":"boolean","required":true},"trade":{"dataType":"boolean","required":true},"send":{"dataType":"boolean","required":true}},"required":true},"whitelistScopes":{"dataType":"union","subSchemas":[{"dataType":"array","array":{"dataType":"refEnum","ref":"ApiPermissions"}},{"dataType":"undefined"}],"required":true},"ipWhitelistAddresses":{"dataType":"array","array":{"dataType":"string"},"required":true},"provideWhitelistedAddresses":{"dataType":"boolean","required":true},"shouldCheckWhitelist":{"dataType":"boolean","required":true},"isRequiringAddressWhitelisting":{"dataType":"boolean","required":true},"minimumDepositUrl":{"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"undefined"}],"required":true},"minimumWithdrawalUrl":{"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"undefined"}],"required":true},"isRequiringEmailConfirmation":{"dataType":"boolean","required":true},"authenticationMethod":{"dataType":"union","subSchemas":[{"dataType":"enum","enums":["oauth"]},{"dataType":"enum","enums":["apiKeys"]}],"required":true},"supportedFeatures":{"dataType":"array","array":{"dataType":"string"},"required":true},"supportedWalletTypes":{"dataType":"array","array":{"dataType":"string"},"required":true},"status":{"ref":"ExchangeStatus","required":true},"logo":{"dataType":"string","required":true},"id":{"dataType":"string","required":true},"name":{"dataType":"string","required":true}},"validators":{}},
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"supportVerifyKYC":{"dataType":"boolean","required":true},"websiteHomelinkIdentifier":{"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"enum","enums":[null]}],"required":true},"notConnectedIdentifier":{"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"undefined"}],"required":true},"transferWalletTypes":{"dataType":"union","subSchemas":[{"dataType":"array","array":{"dataType":"refEnum","ref":"WalletType"}},{"dataType":"undefined"}],"required":true},"sendWalletType":{"dataType":"union","subSchemas":[{"ref":"WalletType"},{"dataType":"undefined"}],"required":true},"inducedPermissions":{"dataType":"union","subSchemas":[{"ref":"Partial_Record_ApiPermissions.ApiPermissions-Array__"},{"dataType":"undefined"}],"required":true},"requiresTwoKeys":{"dataType":"boolean","required":true},"requiresPassword":{"dataType":"boolean","required":true},"requiresUid":{"dataType":"boolean","required":true},"oauthAuthentication":{"dataType":"nestedObjectLiteral","nestedProperties":{"isUsingFastApi":{"dataType":"boolean","required":true},"hasPkceFlow":{"dataType":"boolean","required":true},"isOauthLoginSupported":{"dataType":"boolean","required":true}},"required":true},"hybridAuthentication":{"dataType":"union","subSchemas":[{"dataType":"nestedObjectLiteral","nestedProperties":{"api_keys":{"dataType":"array","array":{"dataType":"refEnum","ref":"ApiPermissions"},"required":true},"oauth":{"dataType":"array","array":{"dataType":"refEnum","ref":"ApiPermissions"},"required":true}}},{"dataType":"undefined"}],"required":true},"affiliationLink":{"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"undefined"}],"required":true},"addressManagementUrl":{"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"undefined"}],"required":true},"apiManagementLink":{"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"undefined"}],"required":true},"featuresUnderMaintenance":{"dataType":"nestedObjectLiteral","nestedProperties":{"limit_trade":{"dataType":"boolean","required":true},"trade_and_send":{"dataType":"boolean","required":true},"receive":{"dataType":"boolean","required":true},"trade":{"dataType":"boolean","required":true},"send":{"dataType":"boolean","required":true}},"required":true},"whitelistScopes":{"dataType":"union","subSchemas":[{"dataType":"array","array":{"dataType":"refEnum","ref":"ApiPermissions"}},{"dataType":"undefined"}],"required":true},"ipWhitelistAddresses":{"dataType":"array","array":{"dataType":"string"},"required":true},"provideWhitelistedAddresses":{"dataType":"boolean","required":true},"isRequiringAddressWhitelisting":{"dataType":"boolean","required":true},"minimumDepositUrl":{"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"undefined"}],"required":true},"minimumWithdrawalUrl":{"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"undefined"}],"required":true},"isRequiringEmailConfirmation":{"dataType":"boolean","required":true},"authenticationMethod":{"dataType":"union","subSchemas":[{"dataType":"enum","enums":["oauth"]},{"dataType":"enum","enums":["apiKeys"]}],"required":true},"supportedFeatures":{"dataType":"array","array":{"dataType":"string"},"required":true},"supportedWalletTypes":{"dataType":"array","array":{"dataType":"string"},"required":true},"status":{"ref":"ExchangeStatus","required":true},"logo":{"dataType":"string","required":true},"id":{"dataType":"string","required":true},"name":{"dataType":"string","required":true}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "ReturnType_CedeSDK-at-api_91_getSupportedExchanges_93__": {
@@ -1077,42 +1092,6 @@ export function RegisterRoutes(app: Router) {
 
               await templateService.apiHandler({
                 methodName: 'getWithdrawalFee',
-                controller,
-                response,
-                next,
-                validatedArgs,
-                successStatus: undefined,
-              });
-            } catch (err) {
-                return next(err);
-            }
-        });
-        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        const argsWithdrawalController_checkAddressIsWhitelisted: Record<string, TsoaRoute.ParameterSchema> = {
-                params: {"in":"queries","name":"params","required":true,"ref":"CheckAddressIsWhitelistedParams"},
-                exchangeInstanceId: {"in":"header","name":"x-exchange-instance-id","required":true,"dataType":"string"},
-                exchangeId: {"in":"header","name":"x-exchange-id","required":true,"dataType":"string"},
-                apiKey: {"in":"header","name":"x-exchange-api-key","required":true,"dataType":"string"},
-                secretKey: {"in":"header","name":"x-exchange-api-secret","required":true,"dataType":"string"},
-                password: {"in":"header","name":"x-exchange-api-password","dataType":"string"},
-                uid: {"in":"header","name":"x-exchange-api-uid","dataType":"string"},
-        };
-        app.get('/withdrawal/whitelisted-addresses/check',
-            ...(fetchMiddlewares<RequestHandler>(WithdrawalController)),
-            ...(fetchMiddlewares<RequestHandler>(WithdrawalController.prototype.checkAddressIsWhitelisted)),
-
-            async function WithdrawalController_checkAddressIsWhitelisted(request: ExRequest, response: ExResponse, next: any) {
-
-            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-
-            let validatedArgs: any[] = [];
-            try {
-                validatedArgs = templateService.getValidatedArgs({ args: argsWithdrawalController_checkAddressIsWhitelisted, request, response });
-
-                const controller = new WithdrawalController();
-
-              await templateService.apiHandler({
-                methodName: 'checkAddressIsWhitelisted',
                 controller,
                 response,
                 next,
@@ -1674,6 +1653,41 @@ export function RegisterRoutes(app: Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        const argsSubAccountController_getSubAccountsBalancesWithTokens: Record<string, TsoaRoute.ParameterSchema> = {
+                exchangeInstanceId: {"in":"header","name":"x-exchange-instance-id","required":true,"dataType":"string"},
+                exchangeId: {"in":"header","name":"x-exchange-id","required":true,"dataType":"string"},
+                apiKey: {"in":"header","name":"x-exchange-api-key","required":true,"dataType":"string"},
+                secretKey: {"in":"header","name":"x-exchange-api-secret","required":true,"dataType":"string"},
+                password: {"in":"header","name":"x-exchange-api-password","dataType":"string"},
+                uid: {"in":"header","name":"x-exchange-api-uid","dataType":"string"},
+        };
+        app.get('/subAccount/balances-with-tokens',
+            ...(fetchMiddlewares<RequestHandler>(SubAccountController)),
+            ...(fetchMiddlewares<RequestHandler>(SubAccountController.prototype.getSubAccountsBalancesWithTokens)),
+
+            async function SubAccountController_getSubAccountsBalancesWithTokens(request: ExRequest, response: ExResponse, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args: argsSubAccountController_getSubAccountsBalancesWithTokens, request, response });
+
+                const controller = new SubAccountController();
+
+              await templateService.apiHandler({
+                methodName: 'getSubAccountsBalancesWithTokens',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: undefined,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         const argsSubAccountController_subAccountTransfer: Record<string, TsoaRoute.ParameterSchema> = {
                 params: {"in":"body","name":"params","required":true,"ref":"SubAccountTransferParams"},
         };
@@ -1787,6 +1801,41 @@ export function RegisterRoutes(app: Router) {
 
               await templateService.apiHandler({
                 methodName: 'getWithdrawableBalances',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: undefined,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        const argsPortfolioController_getWithdrawableBalancesWithTokens: Record<string, TsoaRoute.ParameterSchema> = {
+                exchangeInstanceId: {"in":"header","name":"x-exchange-instance-id","required":true,"dataType":"string"},
+                exchangeId: {"in":"header","name":"x-exchange-id","required":true,"dataType":"string"},
+                apiKey: {"in":"header","name":"x-exchange-api-key","required":true,"dataType":"string"},
+                secretKey: {"in":"header","name":"x-exchange-api-secret","required":true,"dataType":"string"},
+                password: {"in":"header","name":"x-exchange-api-password","dataType":"string"},
+                uid: {"in":"header","name":"x-exchange-api-uid","dataType":"string"},
+        };
+        app.get('/portfolio/withdrawable-balances-with-tokens',
+            ...(fetchMiddlewares<RequestHandler>(PortfolioController)),
+            ...(fetchMiddlewares<RequestHandler>(PortfolioController.prototype.getWithdrawableBalancesWithTokens)),
+
+            async function PortfolioController_getWithdrawableBalancesWithTokens(request: ExRequest, response: ExResponse, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args: argsPortfolioController_getWithdrawableBalancesWithTokens, request, response });
+
+                const controller = new PortfolioController();
+
+              await templateService.apiHandler({
+                methodName: 'getWithdrawableBalancesWithTokens',
                 controller,
                 response,
                 next,

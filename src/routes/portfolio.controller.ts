@@ -5,6 +5,7 @@ import { errorHandler } from '../middleware/errorHandler';
 import { ErrorResponse } from '../types';
 import { extractAuthFromHeaders } from '../utils/auth';
 type GetWithdrawableBalancesResponseV2 = ReturnType<CedeSDK['api']['getWithdrawableBalancesV2']>;
+type GetWithdrawableBalancesWithTokensResponseV2 = ReturnType<CedeSDK['api']['getWithdrawableBalancesWithTokensV2']>;
 type GetBalancesResponseV2 = ReturnType<CedeSDK['api']['getBalancesV2']>;
 type GetMainSubAccountsBalancesWithTokensResponseV2 = ReturnType<CedeSDK['api']['getMainSubAccountsBalancesWithTokensV2']>;
 type GetBalancesWithTokensResponseV2 = ReturnType<CedeSDK['api']['getBalancesWithTokensV2']>;
@@ -42,6 +43,42 @@ export class PortfolioController extends Controller {
     @Header('x-exchange-api-uid') uid?: string
   ): Promise<GetWithdrawableBalancesResponseV2> {
     return await this.sdk.api.getWithdrawableBalancesV2({
+      exchangeInstanceId,
+      auth: {
+        exchangeId,
+        apiKey,
+        secretKey,
+        password,
+        uid,
+      },
+    });
+  }
+
+  /**
+   * Get withdrawable balances with token metadata for an exchange.
+   * Retrieves balances from a wallet used to initiate withdrawals and provides token metadata (e.g. token icon, contract address if available, etc.).
+   * 
+   * If you have funds on other wallets, you'll first need to transfer these funds to the withdrawal wallet:
+   * - you can retrieve withdrawal wallets using `/supported` endpoint (`sendWalletTypes` field)
+   */
+  @Get('withdrawable-balances-with-tokens')
+  @Response<ErrorResponse>(401, 'Unauthorized')
+  @Response<ErrorResponse>(403, 'Forbidden')
+  @Response<ErrorResponse>(400, 'Bad Request')
+  @Response<ErrorResponse>(404, 'Not Found')
+  @Response<ErrorResponse>(408, 'Request Timeout')
+  @Response<ErrorResponse>(429, 'Too Many Requests')
+  @Response<ErrorResponse>(500, 'Internal Server Error')
+  @Response<ErrorResponse>(503, 'Service Unavailable')
+  public async getWithdrawableBalancesWithTokens(
+    @Header('x-exchange-instance-id') exchangeInstanceId: string,
+    @Header('x-exchange-id') exchangeId: string,
+    @Header('x-exchange-api-key') apiKey: string,
+    @Header('x-exchange-api-secret') secretKey: string,
+    @Header('x-exchange-api-password') password?: string,
+    @Header('x-exchange-api-uid') uid?: string
+  ): Promise<GetWithdrawableBalancesWithTokensResponseV2> {
+    return await this.sdk.api.getWithdrawableBalancesWithTokensV2({
       exchangeInstanceId,
       auth: {
         exchangeId,
@@ -168,6 +205,19 @@ export function portfolioRoutes(sdk: CedeSDK) {
         auth.secretKey,
         auth.password as string | undefined,
         auth.uid as string | undefined
+    );
+    res.json(result);
+  }));
+
+  router.get('/withdrawable-balances-with-tokens', errorHandler(async (req, res) => {
+    const auth = extractAuthFromHeaders(req);
+    const result = await controller.getWithdrawableBalancesWithTokens(
+      auth.exchangeInstanceId,
+      auth.exchangeId,
+      auth.apiKey,
+      auth.secretKey,
+      auth.password,
+      auth.uid
     );
     res.json(result);
   }));

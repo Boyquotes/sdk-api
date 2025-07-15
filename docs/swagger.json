@@ -336,6 +336,9 @@
 					},
 					"isInternalTransfer": {
 						"type": "boolean"
+					},
+					"appendFeeToAmount": {
+						"type": "boolean"
 					}
 				},
 				"required": [
@@ -424,6 +427,9 @@
 					},
 					"isInternalTransfer": {
 						"type": "boolean"
+					},
+					"appendFeeToAmount": {
+						"type": "boolean"
 					}
 				},
 				"required": [
@@ -506,33 +512,6 @@
 					"tokenSymbol",
 					"network",
 					"amount"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"ReturnType_CedeSDK-at-api_91_checkAddressIsWhitelisted_93__": {
-				"type": "boolean",
-				"description": "Obtain the return type of a function type"
-			},
-			"CheckAddressIsWhitelistedResponse": {
-				"$ref": "#/components/schemas/ReturnType_CedeSDK-at-api_91_checkAddressIsWhitelisted_93__"
-			},
-			"CheckAddressIsWhitelistedParams": {
-				"properties": {
-					"address": {
-						"type": "string"
-					},
-					"tokenSymbol": {
-						"type": "string"
-					},
-					"key": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"address",
-					"tokenSymbol",
-					"key"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -854,9 +833,6 @@
 						},
 						"type": "object"
 					},
-					"recaptchaToken": {
-						"type": "string"
-					},
 					"amount": {
 						"type": "string"
 					},
@@ -971,6 +947,9 @@
 			},
 			"Order": {
 				"properties": {
+					"isSelfTrade": {
+						"type": "boolean"
+					},
 					"clientOrderId": {
 						"type": "string"
 					},
@@ -1030,6 +1009,14 @@
 			"CreateOrderResponse": {
 				"$ref": "#/components/schemas/ReturnType_CedeSDK-at-api_91_createOrder_93__"
 			},
+			"CustomThrottlePriority": {
+				"enum": [
+					1,
+					2,
+					3
+				],
+				"type": "number"
+			},
 			"OrderStpTypes": {
 				"type": "string",
 				"enum": [
@@ -1051,6 +1038,14 @@
 					"amount": {
 						"type": "string"
 					},
+					"opts": {
+						"properties": {
+							"requestPriority": {
+								"$ref": "#/components/schemas/CustomThrottlePriority"
+							}
+						},
+						"type": "object"
+					},
 					"pairSymbol": {
 						"type": "string"
 					},
@@ -1062,9 +1057,6 @@
 					},
 					"orderType": {
 						"$ref": "#/components/schemas/OrderType"
-					},
-					"recaptchaToken": {
-						"type": "string"
 					},
 					"metadata": {
 						"properties": {
@@ -1335,6 +1327,18 @@
 			"GetSubAccountBalancesResponseV2": {
 				"$ref": "#/components/schemas/ReturnType_CedeSDK-at-api_91_getSubAccountBalancesV2_93__"
 			},
+			"Record_string.Partial___91_walletType-string_93__58___91_tokenSymbol-string_93__58__balance-PortfolioBalanceEntry--token-TokenWithMarketNetwork_____": {
+				"properties": {},
+				"type": "object",
+				"description": "Construct a type with a set of properties K of type T"
+			},
+			"ReturnType_CedeSDK-at-api_91_getSubAccountsBalancesWithTokensV2_93__": {
+				"$ref": "#/components/schemas/Record_string.Partial___91_walletType-string_93__58___91_tokenSymbol-string_93__58__balance-PortfolioBalanceEntry--token-TokenWithMarketNetwork_____",
+				"description": "Obtain the return type of a function type"
+			},
+			"GetSubAccountsBalancesWithTokensResponseV2": {
+				"$ref": "#/components/schemas/ReturnType_CedeSDK-at-api_91_getSubAccountsBalancesWithTokensV2_93__"
+			},
 			"SubAccountTransferResponse": {
 				"properties": {
 					"transferId": {
@@ -1496,6 +1500,32 @@
 			},
 			"GetWithdrawableBalancesResponseV2": {
 				"$ref": "#/components/schemas/ReturnType_CedeSDK-at-api_91_getWithdrawableBalancesV2_93__"
+			},
+			"WithdrawableBalancesWithTokensV2": {
+				"properties": {},
+				"additionalProperties": {
+					"properties": {
+						"token": {
+							"$ref": "#/components/schemas/TokenWithMarketNetwork"
+						},
+						"balance": {
+							"$ref": "#/components/schemas/TokenBalanceV2"
+						}
+					},
+					"required": [
+						"token",
+						"balance"
+					],
+					"type": "object"
+				},
+				"type": "object"
+			},
+			"ReturnType_CedeSDK-at-api_91_getWithdrawableBalancesWithTokensV2_93__": {
+				"$ref": "#/components/schemas/WithdrawableBalancesWithTokensV2",
+				"description": "Obtain the return type of a function type"
+			},
+			"GetWithdrawableBalancesWithTokensResponseV2": {
+				"$ref": "#/components/schemas/ReturnType_CedeSDK-at-api_91_getWithdrawableBalancesWithTokensV2_93__"
 			},
 			"ReturnType_CedeSDK-at-api_91_getBalancesV2_93__": {
 				"$ref": "#/components/schemas/Partial___91_walletType-string_93__58___91_tokenSymbol-string_93__58_PortfolioBalanceEntry___",
@@ -2119,9 +2149,6 @@
 					"provideWhitelistedAddresses": {
 						"type": "boolean"
 					},
-					"shouldCheckWhitelist": {
-						"type": "boolean"
-					},
 					"isRequiringAddressWhitelisting": {
 						"type": "boolean"
 					},
@@ -2187,7 +2214,6 @@
 					"featuresUnderMaintenance",
 					"ipWhitelistAddresses",
 					"provideWhitelistedAddresses",
-					"shouldCheckWhitelist",
 					"isRequiringAddressWhitelisting",
 					"isRequiringEmailConfirmation",
 					"authenticationMethod",
@@ -2543,7 +2569,7 @@
 						}
 					}
 				},
-				"description": "Create a new withdrawal.\nInitiates a withdrawal transaction from the exchange.\nRequires proper authentication and withdrawal address verification.",
+				"description": "Create a new withdrawal.\nInitiates a withdrawal transaction from the exchange.\nRequires proper authentication and withdrawal address verification.\n\nTo determine whether an exchange requires address whitelisting for withdrawals, check the `isRequiringAddressWhitelisting` field in the exchange information returned by \nthe `/supported` endpoint. \n\nFor exchanges that support address whitelisting, retrieve the list of whitelisted addresses using the `/whitelisted-addresses` endpoint and verify \nthat the destination address is approved. This verification is particularly important when an exchange mandates address whitelisting for withdrawals.",
 				"tags": [
 					"Withdrawal"
 				],
@@ -2859,182 +2885,6 @@
 				]
 			}
 		},
-		"/withdrawal/whitelisted-addresses/check": {
-			"get": {
-				"operationId": "CheckAddressIsWhitelisted",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/CheckAddressIsWhitelistedResponse"
-								}
-							}
-						}
-					},
-					"400": {
-						"description": "Bad Request",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/ErrorResponse"
-								}
-							}
-						}
-					},
-					"401": {
-						"description": "Unauthorized",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/ErrorResponse"
-								}
-							}
-						}
-					},
-					"403": {
-						"description": "Forbidden",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/ErrorResponse"
-								}
-							}
-						}
-					},
-					"404": {
-						"description": "Not Found",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/ErrorResponse"
-								}
-							}
-						}
-					},
-					"408": {
-						"description": "Request Timeout",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/ErrorResponse"
-								}
-							}
-						}
-					},
-					"429": {
-						"description": "Too Many Requests",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/ErrorResponse"
-								}
-							}
-						}
-					},
-					"500": {
-						"description": "Internal Server Error",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/ErrorResponse"
-								}
-							}
-						}
-					},
-					"503": {
-						"description": "Service Unavailable",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/ErrorResponse"
-								}
-							}
-						}
-					}
-				},
-				"description": "Check if a withdrawal address is in the exchange's whitelist.\nMost of the exchanges require the withdrawal address to be whitelisted.",
-				"tags": [
-					"Withdrawal"
-				],
-				"security": [],
-				"parameters": [
-					{
-						"in": "header",
-						"name": "x-exchange-instance-id",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"in": "header",
-						"name": "x-exchange-id",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"in": "header",
-						"name": "x-exchange-api-key",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"in": "header",
-						"name": "x-exchange-api-secret",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"in": "header",
-						"name": "x-exchange-api-password",
-						"required": false,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"in": "header",
-						"name": "x-exchange-api-uid",
-						"required": false,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"in": "query",
-						"name": "address",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"in": "query",
-						"name": "tokenSymbol",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"in": "query",
-						"name": "key",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				]
-			}
-		},
 		"/withdrawal/whitelisted-addresses": {
 			"get": {
 				"operationId": "GetWhitelistedAddresses",
@@ -3130,7 +2980,7 @@
 						}
 					}
 				},
-				"description": "Get whitelisted addresses.\nRetrieves all whitelisted withdrawal addresses for an exchange.\nCan be filtered by token and network.",
+				"description": "Get whitelisted addresses.\nRetrieves all whitelisted withdrawal addresses for an exchange.\nCan be filtered by token and network.\n\nTo know whether an exchange supports address whitelisting, check the `provideWhitelistedAddresses` field in the exchange information returned by \nthe `/supported` endpoint. \n\nTo determine whether an exchange requires address whitelisting for withdrawals, check the `isRequiringAddressWhitelisting` field in the exchange information returned by \nthe `/supported` endpoint.",
 				"tags": [
 					"Withdrawal"
 				],
@@ -5443,6 +5293,158 @@
 				]
 			}
 		},
+		"/subAccount/balances-with-tokens": {
+			"get": {
+				"operationId": "GetSubAccountsBalancesWithTokens",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetSubAccountsBalancesWithTokensResponseV2"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ErrorResponse"
+								}
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ErrorResponse"
+								}
+							}
+						}
+					},
+					"403": {
+						"description": "Forbidden",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ErrorResponse"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ErrorResponse"
+								}
+							}
+						}
+					},
+					"408": {
+						"description": "Request Timeout",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ErrorResponse"
+								}
+							}
+						}
+					},
+					"429": {
+						"description": "Too Many Requests",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ErrorResponse"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Internal Server Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ErrorResponse"
+								}
+							}
+						}
+					},
+					"503": {
+						"description": "Service Unavailable",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ErrorResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Get all sub accounts balances with token metadata for an exchange.\nRetrieves balances for all sub accounts and provides token metadata (e.g. token icon, contract address if available, etc.).",
+				"tags": [
+					"Sub Accounts"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "header",
+						"name": "x-exchange-instance-id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "header",
+						"name": "x-exchange-id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "header",
+						"name": "x-exchange-api-key",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "header",
+						"name": "x-exchange-api-secret",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "header",
+						"name": "x-exchange-api-password",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "header",
+						"name": "x-exchange-api-uid",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
 		"/subAccount/transfer": {
 			"post": {
 				"operationId": "SubAccountTransfer",
@@ -5707,6 +5709,158 @@
 					}
 				},
 				"description": "Get withdrawable balances for an exchange.\nRetrieves balances from a wallet used to initiate withdrawals.\n\nIf you have funds on other wallets, you'll first need to transfer these funds to the withdrawal wallet:\n- you can retrieve withdrawal wallets using `/supported` endpoint (`sendWalletTypes` field)\n\nThe response includes balances grouped by wallet type.",
+				"tags": [
+					"Portfolio"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "header",
+						"name": "x-exchange-instance-id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "header",
+						"name": "x-exchange-id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "header",
+						"name": "x-exchange-api-key",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "header",
+						"name": "x-exchange-api-secret",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "header",
+						"name": "x-exchange-api-password",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "header",
+						"name": "x-exchange-api-uid",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/portfolio/withdrawable-balances-with-tokens": {
+			"get": {
+				"operationId": "GetWithdrawableBalancesWithTokens",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetWithdrawableBalancesWithTokensResponseV2"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ErrorResponse"
+								}
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ErrorResponse"
+								}
+							}
+						}
+					},
+					"403": {
+						"description": "Forbidden",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ErrorResponse"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ErrorResponse"
+								}
+							}
+						}
+					},
+					"408": {
+						"description": "Request Timeout",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ErrorResponse"
+								}
+							}
+						}
+					},
+					"429": {
+						"description": "Too Many Requests",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ErrorResponse"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Internal Server Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ErrorResponse"
+								}
+							}
+						}
+					},
+					"503": {
+						"description": "Service Unavailable",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ErrorResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Get withdrawable balances with token metadata for an exchange.\nRetrieves balances from a wallet used to initiate withdrawals and provides token metadata (e.g. token icon, contract address if available, etc.).\n\nIf you have funds on other wallets, you'll first need to transfer these funds to the withdrawal wallet:\n- you can retrieve withdrawal wallets using `/supported` endpoint (`sendWalletTypes` field)",
 				"tags": [
 					"Portfolio"
 				],

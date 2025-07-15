@@ -8,6 +8,7 @@ import { AuthParams } from '../utils/typeUtils';
 
 type GetSubAccountsResponse = ReturnType<CedeSDK['api']['getSubAccounts']>;
 type GetSubAccountBalancesResponseV2 = ReturnType<CedeSDK['api']['getSubAccountBalancesV2']>;
+type GetSubAccountsBalancesWithTokensResponseV2 = ReturnType<CedeSDK['api']['getSubAccountsBalancesWithTokensV2']>;
 type SubAccountTransferParams =Omit<CedeSDKSubAccountTransferParams, 'fromExchange' | 'toExchange' | 'readonlyExchange' | 'exchange'> & {
   exchangeInstanceId: string;
   auth: AuthParams;
@@ -77,6 +78,39 @@ export class SubAccountController extends Controller {
   }
 
   /**
+   * Get all sub accounts balances with token metadata for an exchange.
+   * Retrieves balances for all sub accounts and provides token metadata (e.g. token icon, contract address if available, etc.).
+   */
+  @Get('balances-with-tokens')
+  @Response<ErrorResponse>(401, 'Unauthorized')
+  @Response<ErrorResponse>(403, 'Forbidden')
+  @Response<ErrorResponse>(400, 'Bad Request')
+  @Response<ErrorResponse>(404, 'Not Found')
+  @Response<ErrorResponse>(408, 'Request Timeout')
+  @Response<ErrorResponse>(429, 'Too Many Requests')
+  @Response<ErrorResponse>(500, 'Internal Server Error')
+  @Response<ErrorResponse>(503, 'Service Unavailable')
+  public async getSubAccountsBalancesWithTokens(
+    @Header('x-exchange-instance-id') exchangeInstanceId: string,
+    @Header('x-exchange-id') exchangeId: string,
+    @Header('x-exchange-api-key') apiKey: string,
+    @Header('x-exchange-api-secret') secretKey: string,
+    @Header('x-exchange-api-password') password?: string,
+    @Header('x-exchange-api-uid') uid?: string
+  ): Promise<GetSubAccountsBalancesWithTokensResponseV2> {
+    return await this.sdk.api.getSubAccountsBalancesWithTokensV2({
+      exchangeInstanceId,
+      auth: {
+        exchangeId,
+        apiKey,
+        secretKey,
+        password,
+        uid,
+      },
+    });
+  }
+
+  /**
    * Transfer funds between sub-account and master account.
    */
   @Post('transfer')
@@ -122,6 +156,19 @@ export function subAccountRoutes(sdk: CedeSDK) {
       auth.secretKey,
       auth.password,
       auth.uid,
+    );
+    res.json(result);
+  }));
+
+  router.get('/balances-with-tokens', errorHandler(async (req, res) => {
+    const auth = extractAuthFromHeaders(req);
+    const result = await controller.getSubAccountsBalancesWithTokens(
+      auth.exchangeInstanceId,
+      auth.exchangeId,
+      auth.apiKey,
+      auth.secretKey,
+      auth.password,
+      auth.uid
     );
     res.json(result);
   }));

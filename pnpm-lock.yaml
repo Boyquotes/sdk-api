@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@cedelabs-private/sdk':
-        specifier: 2.22.0
-        version: 2.22.0
+        specifier: 2.28.0
+        version: 2.28.0
       body-parser:
         specifier: ^1.20.3
         version: 1.20.3
@@ -76,8 +76,8 @@ packages:
     resolution: {integrity: sha512-8Q/r5mXLa8Rfyh6r4SgEEFJgISVN5cDNFlcfSWLgFn3odzQhTfHAqzI3hMGdcROViL+8NrDNVVFQtEUrYOksDg==}
     engines: {node: '>= 16'}
 
-  '@cedelabs-private/sdk@2.22.0':
-    resolution: {integrity: sha512-Ha2ogleeCYWn8AF1Qem0e2Z86vXKIE12GsWG6Up4wTieN9Vkym0nzjEZE87OOsfTf0uqtNB/Pkbc93LYG+iUyA==}
+  '@cedelabs-private/sdk@2.28.0':
+    resolution: {integrity: sha512-ovhVnc8FB932cUh/5kz7NudE0HoQotoTVtcytmKSXc/yCfQC04ICQao5AhsjNwe8vi7ERs/e9VzScnCCibMZ+A==}
 
   '@colors/colors@1.6.0':
     resolution: {integrity: sha512-Ir+AOibqzrIsL6ajt3Rz3LskB7OiMVHqltZmspbW/TJuTVuyOMirVqAkjfY6JISiLHgyNqicAC8AyHHGzNd/dA==}
@@ -910,8 +910,8 @@ packages:
   '@types/multer@1.4.12':
     resolution: {integrity: sha512-pQ2hoqvXiJt2FP9WQVLPRO+AmiIm/ZYkavPlIQnx282u4ZrVdztx0pkh3jjpQt0Kz+YI0YhSG264y08UJKoUQg==}
 
-  '@types/node-forge@1.3.11':
-    resolution: {integrity: sha512-FQx220y22OKNTqaByeBGqHWYz4cl94tpcxeFdvBo3wjG6XPBuZ0BNgNZRV5J5TFmmcsJ4IzsLkmGRiQbnYsBEQ==}
+  '@types/node-forge@1.3.13':
+    resolution: {integrity: sha512-zePQJSW5QkwSHKRApqWCVKeKoSOt4xvEnLENZPjyvm9Ezdf/EyDeJM7jqLzOwjVICQQzvLZ63T55MKdJB5H6ww==}
 
   '@types/node-rsa@1.1.4':
     resolution: {integrity: sha512-dB0ECel6JpMnq5ULvpUTunx3yNm8e/dIkv8Zu9p2c8me70xIRUUG3q+qXRwcSf9rN3oqamv4116iHy90dJGRpA==}
@@ -2129,6 +2129,18 @@ packages:
   wrappy@1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
 
+  ws@8.18.3:
+    resolution: {integrity: sha512-PEIGCY5tSlUt50cqyMXfCzX+oOPqN0vuGqWzbcJ2xvnkzkq46oOpz7dQaTDBdfICb4N14+GARUDw2XV2N4tvzg==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: '>=5.0.2'
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
+
   xtend@4.0.2:
     resolution: {integrity: sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==}
     engines: {node: '>=0.4'}
@@ -2169,12 +2181,16 @@ snapshots:
       '@types/json-schema': 7.0.15
       js-yaml: 4.1.0
 
-  '@cedelabs-private/sdk@2.22.0':
+  '@cedelabs-private/sdk@2.28.0':
     dependencies:
       '@types/chrome': 0.0.287
       '@types/lodash': 4.17.13
-      '@types/node-forge': 1.3.11
+      '@types/node-forge': 1.3.13
       '@types/node-rsa': 1.1.4
+      ws: 8.18.3
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
 
   '@colors/colors@1.6.0': {}
 
@@ -2856,7 +2872,7 @@ snapshots:
     dependencies:
       '@types/express': 4.17.21
 
-  '@types/node-forge@1.3.11':
+  '@types/node-forge@1.3.13':
     dependencies:
       '@types/node': 22.13.1
 
@@ -4165,6 +4181,8 @@ snapshots:
       strip-ansi: 7.1.0
 
   wrappy@1.0.2: {}
+
+  ws@8.18.3: {}
 
   xtend@4.0.2: {}
 
