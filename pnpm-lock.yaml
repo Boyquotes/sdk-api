@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@cedelabs-private/sdk':
-        specifier: 2.28.0
-        version: 2.28.0
+        specifier: 2.29.0
+        version: 2.29.0
       body-parser:
         specifier: ^1.20.3
         version: 1.20.3
@@ -76,8 +76,8 @@ packages:
     resolution: {integrity: sha512-8Q/r5mXLa8Rfyh6r4SgEEFJgISVN5cDNFlcfSWLgFn3odzQhTfHAqzI3hMGdcROViL+8NrDNVVFQtEUrYOksDg==}
     engines: {node: '>= 16'}
 
-  '@cedelabs-private/sdk@2.28.0':
-    resolution: {integrity: sha512-ovhVnc8FB932cUh/5kz7NudE0HoQotoTVtcytmKSXc/yCfQC04ICQao5AhsjNwe8vi7ERs/e9VzScnCCibMZ+A==}
+  '@cedelabs-private/sdk@2.29.0':
+    resolution: {integrity: sha512-oG4tApZS3nUZW/XoUx1k16yLru4FvVYYcoMdiKLWuPsJ6F2GYHh9MWB60n11nixaea3DDMrg7JbgVfGhQ+2GMg==}
 
   '@colors/colors@1.6.0':
     resolution: {integrity: sha512-Ir+AOibqzrIsL6ajt3Rz3LskB7OiMVHqltZmspbW/TJuTVuyOMirVqAkjfY6JISiLHgyNqicAC8AyHHGzNd/dA==}
@@ -2181,7 +2181,7 @@ snapshots:
       '@types/json-schema': 7.0.15
       js-yaml: 4.1.0
 
-  '@cedelabs-private/sdk@2.28.0':
+  '@cedelabs-private/sdk@2.29.0':
     dependencies:
       '@types/chrome': 0.0.287
       '@types/lodash': 4.17.13

@@ -1040,6 +1040,9 @@
 					},
 					"opts": {
 						"properties": {
+							"requireFee": {
+								"type": "boolean"
+							},
 							"requestPriority": {
 								"$ref": "#/components/schemas/CustomThrottlePriority"
 							}
