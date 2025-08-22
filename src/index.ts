@@ -31,7 +31,7 @@ if (clientId === "" && env.MODE === "REAL") {
 	throw new Error("CLIENT_ID is required");
 }
 const secretApiKey = process.env.SECRET_API_KEY || "";
-const proxyUrl = process.env.PROXY_URL || "";
+const proxyUrl = process.env.PROXY_URL;
 const ipPoolSize = process.env.IP_POOL_SIZE ? parseInt(process.env.IP_POOL_SIZE) : 1;
 const verbose = process.env.VERBOSE as "vv" | "v" | undefined;
 
